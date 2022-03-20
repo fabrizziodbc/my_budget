@@ -1,8 +1,9 @@
 const boom = require('@hapi/boom');
+const sequelize = require('../libs/sequelize');
 
 class UsersService {
   constructor() {
-    this.users = [{ name: 'Juan' }, { name: 'Pedro' }];
+    this.users = [];
   }
   create() {}
   async find() {
