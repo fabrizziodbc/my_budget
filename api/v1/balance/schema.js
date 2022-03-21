@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const id = Joi.string().uuid();
+const id = Joi.string(); /* .uuid() */
 const expenses = Joi.number();
 const incomes = Joi.number();
 
