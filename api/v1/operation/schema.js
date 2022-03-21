@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const id = Joi.string().uuid();
+const id = Joi.string(); /* .uuid(); */
 const concept = Joi.string();
 const amount = Joi.number();
 const type = Joi.string().valid('expense', 'income');
