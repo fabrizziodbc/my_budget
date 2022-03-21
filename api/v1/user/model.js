@@ -13,7 +13,7 @@ const UserSchema = {
     allowNull: false,
     type: DataTypes.STRING,
   },
-  mail: {
+  email: {
     allowNull: false,
     type: DataTypes.STRING,
     unique: true,

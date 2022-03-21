@@ -8,10 +8,11 @@ const {
   logErrors,
   errorHandler,
   boomErrorHandler,
+  ormErrorHandler,
 } = require('./api/v1/middlewares/error.handler');
 app.use(express.json());
 //cors
-const whiteList = ['http://localhost:8080'];
+/* const whiteList = ['http://localhost:3000/', 'http://localhost:5432/'];
 const options = {
   origin: (origin, callback) => {
     if (whiteList.includes(origin)) {
@@ -20,8 +21,8 @@ const options = {
       callback(new Error('Access denied (cors)'));
     }
   },
-};
-app.use(cors(options));
+}; */
+app.use(cors());
 // Routes
 app.use('/api', api);
 app.use('/api/1', api);
@@ -31,6 +32,7 @@ app.get('/', (req, res) => {
 });
 
 app.use(logErrors);
+app.use(ormErrorHandler);
 app.use(boomErrorHandler);
 app.use(errorHandler);
 

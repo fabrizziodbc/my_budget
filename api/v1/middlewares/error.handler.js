@@ -1,4 +1,7 @@
 /* eslint-disable no-unused-vars */
+const { ValidationError } = require('sequelize');
+const boom = require('@hapi/boom');
+
 const logErrors = (err, req, res, next) => {
   console.log(err);
   next(err);
@@ -15,5 +18,14 @@ const boomErrorHandler = (err, req, res, next) => {
   }
   next(err);
 };
+const ormErrorHandler = (err, req, res, next) => {
+  if (err instanceof ValidationError) {
+    const statusCode = 409;
+    res
+      .status(statusCode)
+      .json({ statusCode: statusCode, message: err.name, errors: err.errors });
+  }
+  next(err);
+};
 
-module.exports = { logErrors, boomErrorHandler, errorHandler };
+module.exports = { logErrors, boomErrorHandler, errorHandler,ormErrorHandler };
