@@ -7,7 +7,7 @@ class BalanceSheetsService {
     return newBalanceSheet;
   }
   async find() {
-    const balanceSheets = await models.Balance.findAll();
+    const balanceSheets = await models.Balance.findAll({ include: ['user'] });
     return balanceSheets;
   }
   async findOne(id) {

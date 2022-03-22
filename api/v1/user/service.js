@@ -4,11 +4,11 @@ const { models } = require('../libs/sequelize');
 class UsersService {
   constructor() {}
   async create(data) {
-    const newUser = await models.User.create(data);
+    const newUser = await models.User.create(data, { include: ['balance'] });
     return newUser;
   }
   async find() {
-    const users = await models.User.findAll();
+    const users = await models.User.findAll({ include: ['balance'] });
     return users;
   }
   async findOne(id) {

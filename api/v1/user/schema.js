@@ -4,11 +4,17 @@ const id = Joi.string();
 const name = Joi.string().min(2);
 const email = Joi.string().min(2).email();
 const password = Joi.string();
+const expenses = Joi.number();
+const incomes = Joi.number();
 
 const createUserSchema = Joi.object({
   name: name.required(),
   email: email.required(),
   password: password.required(),
+  balance: Joi.object({
+    expenses: expenses.required(),
+    incomes: incomes.required(),
+  }),
 });
 const updateUserSchema = Joi.object({
   id: id,
