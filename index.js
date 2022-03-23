@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const api = require('./api/v1');
 
 const {
@@ -12,17 +12,17 @@ const {
 } = require('./middlewares/error.handler');
 app.use(express.json());
 //cors
-/* const whiteList = ['http://localhost:3000/', 'http://localhost:5432/'];
+const whiteList = ['http://localhost:3000/', 'http://localhost:5432/'];
 const options = {
   origin: (origin, callback) => {
-    if (whiteList.includes(origin)) {
+    if (whiteList.includes(origin) || !origin) {
       callback(null, true);
     } else {
       callback(new Error('Access denied (cors)'));
     }
   },
-}; */
-app.use(cors());
+};
+app.use(cors(options));
 // Routes
 app.use('/api', api);
 app.use('/api/1', api);
