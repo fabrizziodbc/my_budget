@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
+const { BALANCE_TABLE } = require('../balance/model');
 
 const OPERATION_TABLE = 'operations';
 
@@ -24,6 +25,17 @@ const OperationSchema = {
   date: {
     allowNull: false,
     type: DataTypes.DATE,
+  },
+  balanceId: {
+    allowNull: false,
+    field: 'balance_id',
+    type: DataTypes.INTEGER,
+    references: {
+      model: BALANCE_TABLE,
+      key: 'id',
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL',
   },
 };
 
