@@ -11,7 +11,9 @@ class BalanceSheetsService {
     return balanceSheets;
   }
   async findOne(id) {
-    const balanceSheet = await models.Balance.findByPk(id);
+    const balanceSheet = await models.Balance.findByPk(id, {
+      include: ['operation'],
+    });
     if (!balanceSheet) {
       throw boom.notFound('Balance Sheet not found');
     }

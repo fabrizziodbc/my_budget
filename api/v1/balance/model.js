@@ -43,6 +43,10 @@ const BalanceSchema = {
 class Balance extends Model {
   static associate(models) {
     this.belongsTo(models.User, { as: 'user' });
+    this.hasMany(models.Operation, {
+      as: 'operation',
+      foreignKey: 'balanceId',
+    });
   }
   static config(sequelize) {
     return {

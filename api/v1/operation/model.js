@@ -28,7 +28,9 @@ const OperationSchema = {
 };
 
 class Operation extends Model {
-  static associate() {}
+  static associate(models) {
+    this.belongsTo(models.Balance, { as: 'balance' });
+  }
   static config(sequelize) {
     return {
       sequelize,

@@ -31,6 +31,19 @@ router.get(
     }
   }
 );
+router.get(
+  '/balance/:id',
+  validatorHandler(getOperationSchema, 'params'),
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const operations = await service.findByBalance(id);
+      res.status(200).json({ operations });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 router.post(
   '/',
   validatorHandler(createOperationSchema, 'body'),

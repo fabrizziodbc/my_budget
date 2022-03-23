@@ -12,8 +12,8 @@ const createUserSchema = Joi.object({
   email: email.required(),
   password: password.required(),
   balance: Joi.object({
-    expenses: expenses.required(),
-    incomes: incomes.required(),
+    expenses: expenses,
+    incomes: incomes,
   }),
 });
 const updateUserSchema = Joi.object({

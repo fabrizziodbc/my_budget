@@ -8,6 +8,7 @@ const setupModels = (sequelize) => {
   Operation.init(OperationSchema, Operation.config(sequelize));
 
   User.associate(sequelize.models);
+  Operation.associate(sequelize.models);
   Balance.associate(sequelize.models);
 };
 
