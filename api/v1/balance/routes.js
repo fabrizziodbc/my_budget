@@ -1,6 +1,6 @@
 const express = require('express');
 const BalanceSheetsService = require('./service');
-const { validatorHandler } = require('../middlewares/validator.handler');
+const { validatorHandler } = require('../../../middlewares/validator.handler');
 const { createOperationSchema, getOperationSchema } = require('./schema');
 
 const router = express.Router();

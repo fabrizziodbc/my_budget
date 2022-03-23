@@ -9,7 +9,7 @@ const {
   errorHandler,
   boomErrorHandler,
   ormErrorHandler,
-} = require('./api/v1/middlewares/error.handler');
+} = require('./middlewares/error.handler');
 app.use(express.json());
 //cors
 /* const whiteList = ['http://localhost:3000/', 'http://localhost:5432/'];

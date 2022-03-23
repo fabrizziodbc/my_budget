@@ -1,6 +1,6 @@
-const { User, UserSchema } = require('../user/model.js');
-const { Operation, OperationSchema } = require('../operation/model.js');
-const { Balance, BalanceSchema } = require('../balance/model.js');
+const { User, UserSchema } = require('../api/v1/user/model.js');
+const { Operation, OperationSchema } = require('../api/v1/operation/model.js');
+const { Balance, BalanceSchema } = require('../api/v1/balance/model.js');
 
 const setupModels = (sequelize) => {
   User.init(UserSchema, User.config(sequelize));
