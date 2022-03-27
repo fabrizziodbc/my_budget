@@ -23,6 +23,9 @@ const options = {
   },
 };
 app.use(cors(options));
+// Passport
+require('./utils/auth/index');
+
 // Routes
 app.use('/api', api);
 app.use('/api/1', api);

@@ -24,6 +24,16 @@ class UsersService {
     }
     return user;
   }
+  async findByEmail(email) {
+    const user = await models.User.findOne({
+      where: { email },
+      include: ['balance'],
+    });
+    if (!user) {
+      throw boom.notFound('User not found');
+    }
+    return user;
+  }
   async update(id, data) {
     const user = await this.findOne(id);
     const userData = await user.update(data);
