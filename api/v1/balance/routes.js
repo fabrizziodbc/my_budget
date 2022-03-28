@@ -1,4 +1,5 @@
 const express = require('express');
+const passport = require('passport');
 const BalanceSheetsService = require('./service');
 const { validatorHandler } = require('../../../middlewares/validator.handler');
 const { createOperationSchema, getOperationSchema } = require('./schema');
@@ -6,16 +7,21 @@ const { createOperationSchema, getOperationSchema } = require('./schema');
 const router = express.Router();
 const service = new BalanceSheetsService();
 
-router.get('/', async (req, res, next) => {
-  try {
-    const balanceSheets = await service.find();
-    res.status(200).json({ balanceSheets });
-  } catch (error) {
-    next(error);
+router.get(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  async (req, res, next) => {
+    try {
+      const balanceSheets = await service.find();
+      res.status(200).json({ balanceSheets });
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 router.get(
   '/:id',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(getOperationSchema, 'params'),
   async (req, res, next) => {
     try {
@@ -29,6 +35,7 @@ router.get(
 );
 router.post(
   '/',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(createOperationSchema, 'body'),
   async (req, res, next) => {
     try {
@@ -42,6 +49,7 @@ router.post(
 );
 router.delete(
   '/:id',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(getOperationSchema, 'params'),
   async (req, res, next) => {
     try {
